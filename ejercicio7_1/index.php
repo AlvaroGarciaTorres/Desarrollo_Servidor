@@ -20,53 +20,43 @@ otro nos presenta en otro php esa tabla de multiplicar (href)
     
     <?php
     define('LIMIT',10);
+    $isItSet = isset($_GET['user_table']);
     
     function createTable($userNumber){
-        $result = 0;       
-        echo<<<END
-        \t<table>
-            <tr>\n
-        END; 
-        echo "\t\t<th class='blue'>Tabla del $userNumber</th>\n";          
-        echo "\t</tr>\n";
+        $result = 0;  
+        echo "<div class='get'>";     
+        echo "<table>";
+        echo "<tr>"; 
+        echo "<th class='blue'>Tabla del $userNumber</th>";          
+        echo "</tr>";
         for($i=0; $i<=LIMIT; $i++){
             $result = $i * $userNumber;
-            echo<<<END
-            \t<tr>
-                \t<td class='white'>$userNumber x $i = $result</td>
-            \t</tr>\n
-            END;
-        }
-        echo "\t</table>\n";
-        echo "\t<br>\n\t<br>\n";
-    }
-
-    if(isset($_GET['table'])){
-        $userNumber = $_GET['table'];
-
-        echo "<div class='get'>\n";
-        createTable($userNumber);
-        echo<<<END
-            <button><a href='.'>Volver</a></button>
-            </div>
-        END;
-    }else {
-       echo<<<END
-        <div class="links_div">
-            <table>
-                <tr>
-                    <th class="blue">Tablas</th>
-                </tr>
-        END;
-        for ($i=1; $i<=LIMIT; $i++){
             echo "<tr>";
-            echo "<td class='white'><a href='index.php?table=$i'>Tabla del $i</a></td>";
+            echo "<td class='white'>$userNumber x $i = $result</td>";
             echo "</tr>";
         }
-        echo<<<END
-            </table>
-        </div>
-       END;
+        echo "</table>";
+        echo "<br>\n\t<br>";
+        echo "<button><a href='.'>Volver</a></button>";
+        echo "</div>";
+    }
+    
+    if($isItSet){
+        $userNumber = $_GET['user_table'];   
+        createTable($userNumber);
+    }else {
+       echo "<div class='links_div'>";
+       echo "<table>";
+       echo "<tr>";
+       echo "<th class='blue'>Tablas</th>";
+       echo "</tr>";
+        for ($i=1; $i<=LIMIT; $i++){
+            echo "<tr>";
+            echo "<td class='white'><a href='index.php?user_table=$i'>Tabla del $i</a></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        echo "</div>";
     }
     ?>
 </body>
