@@ -13,7 +13,7 @@
 <body>
     <h1>Comprobación DNI</h1>
     <div class="form_div">
-        <form action="php/dni.php" method="GET" enctype="multipart/form-data">
+        <form action="php/dni.php" method="GET" enctype="application/x-www-form-urlencoded">
             <label for="dni">Introduce tu DNI: </label>
             <input type="text" id="dni" name="dni">
             <input type="submit" name="save">

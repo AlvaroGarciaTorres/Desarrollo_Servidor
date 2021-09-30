@@ -18,7 +18,7 @@ siento
 <body>
     <h1>Comprobación de aprobado</h1>
     <div class="form_div">
-        <form action="php/notas.php" enctype="multipart/form-data" method="POST">
+        <form action="php/notas.php" enctype="application/x-www-form-urlencoded" method="POST">
             <label for="student_name">Introduce tu nombre: </label>
             <input type="text" id="student_name" name="student_name"><br><br>
             <label for="student_grade">Introduce tu nota: </label>

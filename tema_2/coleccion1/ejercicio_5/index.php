@@ -32,7 +32,7 @@ Al final nos visualizara la media por cursos y la media final del centro.-->
     function createForm(){
     echo<<<END
         <div class="form_div">
-        <form action="." method="GET" enctype="multipart/form-data">
+        <form action="." method="GET" enctype="application/x-www-form-urlencoded">
             <label for="student_name">Nombre del alumno: </label>
             <input type="text" id="student_name" name="student_name"><br><br>
             <label for="student_grade">Nota del alumno: </label>
