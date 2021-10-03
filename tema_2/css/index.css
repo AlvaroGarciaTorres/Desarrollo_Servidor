@@ -1,25 +1,35 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
 body{
-    text-align: center;
     background: white;
+    box-sizing: border-box;
 }
 
 h1{
+    margin: 2rem auto;
+    width: fit-content;
+    min-width: 30%;
+    text-align: center;
     color: white;
     background-color: #3c7c9e;
-    margin-left: 35%;
     padding: 1em;
-    width: 30%;
     border-left: #162e3b solid 5px;
     box-shadow: 0 2px 2px 1px rgba(11, 31, 32, 0.781);
 }
 
-div, .form_div, .table_div{
-    position: relative;
+div{
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 30%;
+    width: fit-content;
+    text-align: center;
     padding: 1em;
-    background: lightgray;
-    width: 32%;
-    height: fit-content;
-    margin-left: 35%;
+    background: lightgray;  
     color: black;
     border-left: darkgray solid 5px;
     box-shadow: 0 2px 2px 1px rgba(48, 51, 51, 0.781);
@@ -30,10 +40,23 @@ a, a:active {
     color: black;
 }
 
+button{
+    padding: 0.2rem 0.5rem;
+}
+
+input{
+    padding: 0.1rem 0.5rem;
+}
+
+button.bottom-btn{
+    margin-left:60%;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
 table, td, th{
-    margin-left: 25%;
+    margin: auto;
     padding: 1rem 2rem;
-    left: 50%;
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -46,3 +69,12 @@ table, td, th{
 .white{
     background-color: white;
 }
+
+.yellow{
+    background-color: lightgoldenrodyellow;
+}
+
+.stand_alone{
+    margin-top: 2rem;
+}
+

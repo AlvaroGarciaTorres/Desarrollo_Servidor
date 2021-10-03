@@ -1,6 +1,6 @@
 <!--Realizar un pequeño programa en el que nos pida un DNI y nos visualiza la letra correspondiente.
-Tercera versión:
-3)	Un único php que visualiza el formulario y lo procesa-->
+Primera versión:
+1)	Href-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,15 +16,12 @@ Tercera versión:
     <h1>Asignación de letra del DNI</h1>
 
     <?php
-
-    function printForm(){
+    $user_dni = "35674277";
+    
+    function printForm($user_dni){
         echo<<<END
         <div>
-        <form action="." method="GET" enctype="application/x-www-form-urlencoded">
-            <label for="dni">Introduzca su DNI: </label>
-            <input type="text" id="dni" name="dni">
-            <input type="submit" name="save">
-        </form>
+        <button><a href="index.php?user_dni=$user_dni">Pulse aquí para ver la letra de su DNI</a></button>       
         </div>
         <br><br>
         <button class='bottom-btn'><a href="..">Atrás</a></button>
@@ -48,23 +45,11 @@ END;
         return $dni_letter;
     }
 
-    function printError($error_message){
-        echo "<div>";
-        echo "<span>$error_message</span>";
-        echo "<br><br>";
-        echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
-        echo "</div>";
-    }
+    if(!isset($_GET['user_dni'])){
+        printForm($user_dni);
+    } else printAnswer($_GET['user_dni']);
 
-    if(!isset($_GET['dni'])){ 
-        printForm();
-    }else if (empty($_GET['dni'])){
-        printError("Introduzca su DNI por favor");
-    }else if (!is_numeric($_GET['dni'])){
-        printError("Introduzca solo los números de su DNI por favor");
-    }else printAnswer($_GET['dni']);
     ?>
-
+    
 </body>
-
 </html>

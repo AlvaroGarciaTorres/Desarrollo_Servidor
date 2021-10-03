@@ -10,12 +10,12 @@ los días que correspondan. Nota:Utilizar un switch -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 1 tanda 2</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
 </head>
 
 <body>
     <?php
-
+    
     function printForm(){
         echo<<<END
         <h1>Selección de calendario</h1>
@@ -28,15 +28,78 @@ los días que correspondan. Nota:Utilizar un switch -->
                 <input type="submit" name="save">
             </form>
         </div>
+        <br><br>
+        <button class='bottom-btn'><a href='..'>Atrás</a></button>
 END;
     }
+
+    function checkValidMonth($user_month, $user_year){  
+        $user_month = strtolower($user_month);  
+        if(numberOfDaysOfTheMonth($user_month, $user_year) == 0){
+            printError("Mes incorrecto, vuelva a escribirlo por favor");
+        } else printTable(numberOfDaysOfTheMonth($user_month, $user_year), $user_month);
+    }
+
+    function numberOfDaysOfTheMonth($user_month, $user_year){       
+        switch ($user_month){
+            case "enero":
+                $days_of_month = 31;
+                break;
+            case "febrero":
+                if(checkLeapYear($user_year)){
+                    $days_of_month = 29;
+                }else $days_of_month = 28;
+                break;
+            case "marzo":
+                $days_of_month = 31;
+                break;
+            case "abril":
+                $days_of_month = 30;
+                break;
+            case "mayo":
+                $days_of_month = 31;
+                break;
+            case "junio":
+                $days_of_month = 30;
+                break;
+            case "julio":
+                $days_of_month = 31;
+                break;
+            case "agosto":
+                $days_of_month = 31;
+                break;
+            case "septiembre":
+                $days_of_month = 30;
+                break;
+            case "octubre":
+                $days_of_month = 31;
+                break;
+            case "noviembre":
+                $days_of_month = 30;
+                break;
+            case "diciembre":
+                $days_of_month = 31;
+                break;
+            default:
+                $days_of_month = 0;
+        }
+        return $days_of_month;
+    }
+
+    function printError($error_message){
+        echo "<h1>Selección de calendario</h1>";
+        echo "<div>";
+        echo "<span>$error_message</span>";
+        echo "<br><br>";
+        echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
+        echo "</div>";
+    }
     
-    function printTable(){
-        echo "<h1>Calendario de " . $_GET['user_month'] . "</h1>";
+    function printTable($days_of_month, $user_month){
+        echo "<h1>Calendario de $user_month</h1>";
         echo "<div class='table_div'>";
         echo "<br>";
-        if(checkValidMonth(checkDaysOfMonth())){   
-            echo<<<END
+        echo<<<END
             <table>
                 <tr>
                     <th class="blue">Lunes</th>
@@ -48,14 +111,10 @@ END;
                     <th class="blue">Domingo</th>
                 </tr>
 END;
-            printDays(checkDaysOfMonth());
-            echo "</table>";
-        }else {
-            echo "<p>Fecha inválida, vuelva a introducirla por favor</p>";
-        }  
-        echo "<br>";
-        echo "<br>";
-        echo "<button><a href='.'>Volver</a></button>";
+        printDays($days_of_month);
+        echo "</table>"; 
+        echo "<br><br>";
+        echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
         echo "</div>";    
     }
 
@@ -80,76 +139,24 @@ END;
         } 
         echo "</tr>";      
     }
-
-    function checkDaysOfMonth(){       
-        switch ($_GET['user_month']){
-            case "Enero":
-                $dias = 31;
-                break;
-            case "Febrero":
-                if(checkLeapYear()){
-                    $dias = 29;
-                }else $dias = 28;
-                break;
-            case "Marzo":
-                $dias = 31;
-                break;
-            case "Abril":
-                $dias = 30;
-                break;
-            case "Mayo":
-                $dias = 31;
-                break;
-            case "Junio":
-                $dias = 30;
-                break;
-            case "Julio":
-                $dias = 31;
-                break;
-            case "Agosto":
-                $dias = 31;
-                break;
-            case "Septiembre":
-                $dias = 30;
-                break;
-            case "Octubre":
-                $dias = 31;
-                break;
-            case "Noviembre":
-                $dias = 30;
-                break;
-            case "Diciembre":
-                $dias = 31;
-                break;
-            default:
-                $dias = 0;
-        }
-        return $dias;
-    }
-
-    function checkValidMonth($days_of_month){
-        $valid_month = true;
-        if($days_of_month == 0){
-            $valid_month = false;
-        }
-        return $valid_month;
-    }
     
-    function checkLeapYear(){
+    function checkLeapYear($user_year){
         $isLeapYear = false;
-        if($_GET['user_year']%4 == 0 && $_GET['user_year']%100 == 0 && $_GET['user_year']%400 == 0){
+        if($user_year%4 == 0 && $user_year%100 != 0 ){
             $isLeapYear = true;
         }
         return $isLeapYear;
     }
 
-    if(isset($_GET['user_month']) && isset($_GET['user_year']) && is_numeric($_GET['user_year']) && !empty($_GET['user_month']) && !empty($_GET['user_year'])){
-        printTable();
-    }else {
+    if(!isset($_GET['user_month']) && !isset($_GET['user_year'])){
         printForm();
-        echo "<br><br>";
-        echo "<button class='bottom-btn'><a href='..'>Atrás</a></button>";
-    }
+    } else if(empty($_GET['user_month']) && empty($_GET['user_year'])){
+        printError("Por favor, introduzca un mes y un año");
+    } else if(empty($_GET['user_month'])){
+        printError("Por favor, introduzca un mes");
+    } else if(empty($_GET['user_year'])){
+        printError("Por favor, introduzca un año");
+    } else checkValidMonth($_GET['user_month'], $_GET['user_year']);
     ?>
 
 </body>

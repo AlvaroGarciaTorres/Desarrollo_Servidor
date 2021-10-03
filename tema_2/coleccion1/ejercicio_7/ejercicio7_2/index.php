@@ -12,8 +12,7 @@ ver y en otro php nos visualiza dicha tabla
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 7</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css?v=<?php echo(rand()); ?>">
-    <script src="/js/mi_script.js?v=<?php echo(rand()); ?>"></script>
+    <link rel="stylesheet" type="text/css" href="../../../css/index.css">
 </head>
 
 <body>
@@ -22,44 +21,58 @@ ver y en otro php nos visualiza dicha tabla
     <?php
     define('LIMIT',10);
     
-    
-
-    function createTable($userNumber){
-        $result = 0;       
-        echo "<table>";
-        echo "<tr>";
-        echo "\t\t<th class='blue'>Tabla del $userNumber</th>\n";          
-        echo "\t</tr>\n";
-        for($i=0; $i<=LIMIT; $i++){
-            $result = $i * $userNumber;
-            echo "<tr>";
-            echo "<td class='white'>$userNumber x $i = $result</td>";
-            echo "</tr>";
-        }
-        echo "\t</table>\n";
-        echo "\t<br>\n\t<br>\n";
-    }
-
-    if(isset($_GET['user_table'])){
-        $userNumber = $_GET['user_table'];
-        echo "<div class='get'>\n";
-        if($userNumber == null or $userNumber < 0){
-            echo "\t<span>Por favor introduce una tabla válida</span>\n\t<br>\n\t<br>\n";
-        }else createTable($userNumber);
-        echo "<button><a href='.'>Volver</a></button>";
-        echo "</div>";
-    }else {
-       echo<<<END
-        <div class="form_div">
+    function printForm(){
+        echo<<<END
+        <div>
             <form action="." method="GET" enctype="application/x-www-form-urlencoded">
-                <label for="table">Selecciona una tabla: </label>
-                <input type="number" id="table" name="table"><br><br>
+                <label for="user_table">Selecciona una tabla: </label>
+                <input type="number" id="user_table" name="user_table"><br><br>
                 <input type="submit" value="Enviar">
             </form>
         </div>
+        <br><br>
+        <button class='bottom-btn'><a href='..'>Atrás</a></button>
 END;
     }
+
+    function printTable($table_number){
+        $result = 0;  
+        echo "<div>";     
+        echo "<table>";
+        echo "<tr>";
+        echo "<th class='blue'>Tabla del $table_number</th>";          
+        echo "</tr>";
+        for($i=0; $i<=LIMIT; $i++){
+            $result = $i * $table_number;
+            echo "<tr>";
+            echo "<td class='white'>$table_number x $i = $result</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        echo "<br>";
+        echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
+        echo "</div>";
+    }
+
+    function printError($error_message){
+        echo "<div>";
+        echo "<span></span>";
+        echo "<br>$error_message<br>";
+        echo "<br>";
+        echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
+        echo "</div>";
+    }
+
+    if(!isset($_GET['user_table'])){
+        printForm();
+    }else if(empty($_GET['user_table']) or $_GET['user_table'] < 0){
+        printError("Por favor introduce una tabla válida");
+    }else {
+        printTable($_GET['user_table']);
+    }
+
     ?>
+
 </body>
 
 </html>

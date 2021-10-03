@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selección ejercicios</title>
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
 </head>
 <body>
     <h1>Selecciona el ejercicio</h1>
     <div class="selection">
         <?php
 
-        define('EXERCISES', 8);
+        define('OPTIONS', 2);
 
-        for($i=1; $i<=EXERCISES; $i++){
-            echo "<button class='btn'><a href='./ejercicio_$i/'>Ejercicio $i</a></button><br><br>";
+        for($i=1; $i<=OPTIONS; $i++){
+            echo "<button class='btn'><a href='./ejercicio7_$i/'>Ejercicio $i</a></button><br><br>";
         }
         ?>       
     </div>

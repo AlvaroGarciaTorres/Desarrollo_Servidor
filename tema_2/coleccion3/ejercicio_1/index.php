@@ -32,13 +32,20 @@ END;
             foreach($languages_array as $language_key => $language){
                 echo "<span><b>$language</b></span><br><br>";
                 foreach($languages_level_array as $language_level_key => $language_level){
-                    echo "<label for='user_languages[]'>Nivel $language_level: </label>";
-                    echo "<input type='checkbox' name='user_languages[]' id='user_languages[]' value='$language-$language_level'><br><br>";
+                    if($language_level == "nulo"){
+                        echo "<label for='user_languages[]'>Nivel $language_level: </label>";
+                        echo "<input type='checkbox' name='user_languages[]' id='user_languages[]' value='$language - $language_level' checked><br><br>";
+                    } else{
+                        echo "<label for='user_languages[]'>Nivel $language_level: </label>";
+                        echo "<input type='checkbox' name='user_languages[]' id='user_languages[]' value='$language - $language_level'><br><br>";
+                    }
                 }
             }
         echo "<input type='submit' name='save'>";
         echo "</form>";
         echo "</div>";
+        echo "<br><br>";
+        echo "<button class='bottom-btn'><a href='..'>Atrás</a></button>";
     }
 
     function printInfo(){
@@ -55,8 +62,17 @@ END;
         echo "</div>";
     }
 
-    if(!isset($_POST['user_name'])){
+    function printError($error_message){
+        echo "<div>";
+        echo "<span>$error_message</span><br><br>";
+        echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
+        echo "</div>";
+    }
+
+    if(!isset($_POST['save'])){
         printForm($languages_array, $languages_level_array);
+    } else if(empty($_POST['user_name']) or empty($_POST['user_age']) or empty($_POST['user_birthday'])){
+        printError("Introduzca todos los datos por favor");
     } else{
         printInfo();
     }

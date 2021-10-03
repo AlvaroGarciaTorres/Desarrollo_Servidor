@@ -11,8 +11,7 @@ siento
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 6</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css?v=<?php echo(rand()); ?>">
-    <script src="/js/mi_script.js?v=<?php echo(rand()); ?>"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/index.css">
 </head>
 
 <body>
@@ -26,6 +25,8 @@ siento
             <input type="submit" name="save">
         </form>
     </div>
+    <br><br>
+    <button class='bottom-btn'><a href='..'>Atrás</a></button>  
 </body>
 
 </html>
