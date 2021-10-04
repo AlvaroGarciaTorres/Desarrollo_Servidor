@@ -12,7 +12,7 @@
     <div class="form_div">
         <?php
 
-        define('EXERCISES', 2);
+        define('EXERCISES', 3);
 
         for($i=1; $i<=EXERCISES; $i++){
             echo "<button class='btn'><a href='./ejercicio_$i/'>Ejercicio $i</a></button><br><br>";
