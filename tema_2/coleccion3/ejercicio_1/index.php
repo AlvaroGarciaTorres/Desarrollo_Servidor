@@ -12,7 +12,7 @@ Los posibles idiomas serán Ingles, Frances, Español, Italiano, Portugués-->
     <link rel="stylesheet" type="text/css" href="../../css/index.css">
 </head>
 <body>
-    <h1>Datos personales</h1>
+    <h1>Ejercicio 1</h1>
     <?php
 
     $languages_array = ["english" => "Inglés", "french" => "Francés", "spanish" => "Español", "italian" => "Italiano", "portuguese" => "Portugués"];
