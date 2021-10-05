@@ -31,6 +31,7 @@ Cuando pulsa el botón enviar nos visualiza los datos con los colores selecciona
     $languages_array = ["english" => "Inglés", "french" => "Francés", "spanish" => "Español", "italian" => "Italiano", "portuguese" => "Portugués"];
     $languages_level_array = ["high" => "alto", "medium" => "medio", "low" => "bajo", "null_level" => "nulo"];
     $hobbies_array = ["Libros", "Deporte", "Naturaleza", "Cine/TV", "Viajes", "Jardinería", "Otras"];
+    $passwords_array = ["11265" => "contraseña"];
 
     function printForm($languages_array, $languages_level_array, $hobbies_array){
         echo<<<END
@@ -38,11 +39,15 @@ Cuando pulsa el botón enviar nos visualiza los datos con los colores selecciona
         <div>
         <form action="." method="POST" enctype="application/x-www-form-urlencoded">
             <label for="user_name">Introduzca su nombre: </label>
-            <input type="text" name="user_name" id="user_name" value='Juan Gómez Sierra'><br><br>
+            <input type="text" name="user_name" id="user_name" placeholder='Juan Gómez Sierra'><br><br>
+            <label for="user_id">Introduzca su ID: </label>
+            <input type="text" name="user_id" id="user_id" placeholder='12345'><br><br>
+            <label for="user_password">Introduzca su contraseña: </label>
+            <input type="password" name="user_password" id="user_password" placeholder='******'><br><br>
             <label for="user_age">Introduzca su edad: </label>
-            <input type="number" name="user_age" id="user_age" value='18'><br><br>
+            <input type="number" name="user_age" id="user_age" placeholder='31'><br><br>
             <label for="user_birthday">Introduzca su fecha de nacimiento: </label>
-            <input type="date" name="user_birthday" id="user_birthday" value='18-10-1998'><br><br>
+            <input type="date" name="user_birthday" id="user_birthday" value='1990-10-09'><br><br>
 END;
             foreach($languages_array as $language_key => $language){
                 echo "<span><b>$language</b></span><br><br>";
@@ -71,6 +76,8 @@ END;
         echo "<input type='color' id='header_color' name='header_color' value='#3c7c9e'><br><br>";
         echo "<label for='letter_color'>Elija un color para la letra: </label>";
         echo "<input type='color' id='letter_color' name='letter_color' value='#dcfcf5'><br><br>";
+        echo "<label for='music_volume'>Elija el volumen de la música: </label>";
+        echo "<input type='range' id='music_volume' name='music_volume' min='0' max='10' value='5'><br><br>";
         echo "<input type='submit' name='save'>";
         echo "</form>";
         echo "</div>";
@@ -82,9 +89,9 @@ END;
         echo "<h1 style='background-color: ". $_POST['header_color'] . "; color: ". $_POST['letter_color'] . "'>Datos personales</h1>";
         echo "<div>";
             echo "<br><br>";
-            echo "<span><b>Nombre:</b> " . $_POST['user_name'] . "</span><br><br>";
-            echo "<span><b>Edad:</b> " . $_POST['user_age'] . "</span><br><br>";
-            echo "<span><b>Fecha de nacimiento:</b> " . $_POST['user_birthday'] . "</span><br><br>";
+            echo "<span><b>Nombre:</b> $_POST[user_name]</span><br><br>";
+            echo "<span><b>Edad:</b> $_POST[user_age]</span><br><br>";
+            echo "<span><b>Fecha de nacimiento:</b> $_POST[user_birthday]</span><br><br>";
             echo "<span><b>Idiomas:</b></span><br><br>";
             foreach($_POST['user_languages'] as $language){
                 echo "<span>$language</span><br><br>";
@@ -96,6 +103,9 @@ END;
                     echo "<span>$hobbie.</span>";
                 }else echo "<span>$hobbie, </span>";
             }
+            echo "<br><br>";
+            echo "<span><b>Volumen de la música:</b> $_POST[music_volume]</span>";
+            echo "<br><br>";
             echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
         echo "</div>";
     }
@@ -108,12 +118,21 @@ END;
         echo "</div>";
     }
 
+    function checkUser($user_id, $user_password, $passwords_array){
+        if($passwords_array[$user_id] == $user_password){
+            printInfo();
+        }
+        else printError("Fallo de autenticación, vuelva a intentarlo por favor");
+    }
+
     if(!isset($_POST['save'])){
         printForm($languages_array, $languages_level_array, $hobbies_array);
     } else if(empty($_POST['user_name']) or empty($_POST['user_age']) or empty($_POST['user_birthday']) or empty($_POST['user_gender']) or empty($_POST['user_hobbies'])){
         printError("Introduzca al menos una opción de todos los datos por favor");
+    } else if($_POST['user_age']<0 or $_POST['user_age']>120){
+        printError("Introduzca una edad válida por favor");
     } else{
-        printInfo();
+        checkUser($_POST['user_id'], $_POST['user_password'], $passwords_array);
     }
 
     ?>

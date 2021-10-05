@@ -20,6 +20,9 @@ Cuando finaliza el juego te muestra una estadística de aciertos, fallos, cantid
     $base_form_array = ["go", "sleep", "come", "eat", "drink"];
     $past_simple_array = ["went", "slept", "came", "ate", "drank"];
     $past_participle_array = ["gone", "slept", "come", "eaten", "drunk"];
+    $all_tenses_array = ['base_form' => $base_form_array, 'past_simple' => $past_simple_array, 'past_participle' => $past_participle_array];
+
+    define('NUMBER_OF_QUESTIONS', count($verbs_array)*3);
 
     function printForm($verbs_array){        
         echo "<div>";
@@ -36,31 +39,23 @@ Cuando finaliza el juego te muestra una estadística de aciertos, fallos, cantid
                 <input type="text" name="past_participle[]" id="past_participle[]"><br><br>
 END;
         }
-        echo "<input type='submit' name='check_answers' value='Corregir'>";
+        echo "<input type='submit' name='check_answers' value='Check'>";
         echo "</form>";
         echo "</div>";
         echo "<br><br>";
         echo "<button class='bottom-btn'><a href='..'>Atrás</a></button>";
     }
 
-    function checkAnswers($verbs_array, $base_form_array, $past_simple_array, $past_participle_array){
+    function checkAnswers($all_tenses_array, $number_of_questions){
         $right_answers = 0;
-        foreach($base_form_array as $key => $base_form){
-            if($base_form == $_POST['base_form'][$key]){
-                $right_answers += 1;
+        foreach($all_tenses_array as $tense_key => $verb_tense){
+            foreach($verb_tense as $key => $verb){
+                if($verb == strtolower($_POST[$tense_key][$key])){
+                    $right_answers += 1;
+                }
             }
         }
-        foreach($past_simple_array as $key => $verb){
-            if($verb == $_POST['past_simple'][$key]){
-                $right_answers += 1;
-            }
-        }
-        foreach($past_participle_array as $key => $verb){
-            if($verb == $_POST['past_participle'][$key]){
-                $right_answers += 1;
-            }
-        }
-        printStatistics($right_answers, count($verbs_array)*3);
+        printStatistics($right_answers, $number_of_questions);
     }
 
     function printStatistics($right_answers, $number_of_questions){
@@ -76,7 +71,7 @@ END;
     if(!isset($_POST['check_answers'])){
         printForm($verbs_array);
     } else {
-        checkAnswers($verbs_array, $base_form_array, $past_simple_array, $past_participle_array);
+        checkAnswers($all_tenses_array, NUMBER_OF_QUESTIONS);
     }
     ?>
 </body>
