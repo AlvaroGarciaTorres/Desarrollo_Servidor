@@ -33,7 +33,8 @@ Cuando pulsa el botón enviar nos visualiza los datos con los colores selecciona
     $hobbies_array = ["Libros", "Deporte", "Naturaleza", "Cine/TV", "Viajes", "Jardinería", "Otras"];
     $passwords_array = ["11265" => "contraseña"];
 
-    function printForm($languages_array, $languages_level_array, $hobbies_array){
+    function printForm(){
+        global $languages_array, $languages_level_array, $hobbies_array;
         echo<<<END
         <h1>Datos personales</h1>
         <div>
@@ -126,7 +127,7 @@ END;
     }
 
     if(!isset($_POST['save'])){
-        printForm($languages_array, $languages_level_array, $hobbies_array);
+        printForm();
     } else if(empty($_POST['user_name']) or empty($_POST['user_age']) or empty($_POST['user_birthday']) or empty($_POST['user_gender']) or empty($_POST['user_hobbies'])){
         printError("Introduzca al menos una opción de todos los datos por favor");
     } else if($_POST['user_age']<0 or $_POST['user_age']>120){
