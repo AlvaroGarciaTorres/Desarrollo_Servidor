@@ -17,12 +17,16 @@ Cuando finaliza el juego te muestra una estadística de aciertos, fallos, cantid
     <?php
     include ("php/functions.php");
     include ("php/variables.php");
+
     if(!isset($_POST['next_answer'])){
         printForm(0, 0, 0);
     } else if(isset($_POST['next_answer'])){
-        printForm($_REQUEST['right'], $_REQUEST['wrong'], $_REQUEST['total']);
+        echo count($verbs_array);
+        if($_REQUEST['total']<count($verbs_array)){
+            printForm($_REQUEST['right'], $_REQUEST['wrong'], $_REQUEST['total']);
+        }else printStatistics($_REQUEST['right'], $_REQUEST['wrong'], $_REQUEST['total']);
     } else {
-        checkAnswers();
+        printStatistics($_REQUEST['right'], $_REQUEST['wrong'], $_REQUEST['total']);
     }
     ?>
 </body>
