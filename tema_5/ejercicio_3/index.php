@@ -11,7 +11,7 @@ sobre nosotros , incluida la foto y genera el cv-->
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <h1>Ejercicio 3</h1>
+    <h1 style="min-width: 35%">Constructor de CV</h1>
 
     <?php
 
