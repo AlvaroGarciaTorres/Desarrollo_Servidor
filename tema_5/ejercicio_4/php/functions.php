@@ -28,9 +28,9 @@ function uploadFile(){
     if(is_uploaded_file($_FILES['user_img']['tmp_name'])){
     $dirName = "img/";
         if(is_dir($dirName)){ 
-            $file_id = time();
+            //$file_id = time();
             $userName = deleteAccentMark(str_replace(" ", "", $_POST['user_name']));
-            $fileName =  $userName . "-" . $file_id . "-" . $_FILES['user_img']['name'];
+            $fileName =  $userName /*. "-" . $file_id . "-" . $_FILES['user_img']['name']*/;
             $fullName = $dirName . $fileName;
             move_uploaded_file($_FILES['user_img']['tmp_name'], $fullName);
             echo "<div>";
@@ -45,19 +45,20 @@ function printImg($img_path){
     echo "<div>";
         echo "<h2>Imagen</h2>";
         echo "<br><br>";
-        echo "<span><b>Nombre:</b> $_POST[user_name]</span><br><br>";
+        if(isset($_POST['user_name'])){
+            echo "<span><b>Nombre:</b> $_POST[user_name]</span><br><br>";
+        }else echo "<span><b>Nombre:</b> $_POST[search_user_name]</span><br><br>";
+        
         echo "<img class='user_img' src='$img_path'><br><br>";
         echo "<br><br>";
         echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";
     echo "</div>";
 }
 
-/*function searchImg(){
-    if($_POST['name'] === ){
-
-    }
-    printImg();
-}*/
+function searchImg(){
+    $user_img = "img/" . str_replace(" ", "", $_POST['search_user_name']);
+    printImg($user_img);   
+}
 
 function printError($error_message){
     echo "<div>";

@@ -78,11 +78,10 @@ table, td, th{
     margin-top: 2rem;
 }
 
-img.user_img {
-    
+img.user_img {   
     top: 1rem;
     height: 10rem;
-    width: 10rem;
+    width: 8rem;
 }
 
 div.cv_display {
@@ -94,6 +93,7 @@ div.cv_display {
 }
 
 div.col-1-of-1 {
+    float: none;
     background-color: white;
     border: none;
     box-shadow: none;
@@ -102,14 +102,13 @@ div.col-1-of-1 {
 }
 
 div.col-1-of-2 {
-    position: relative;
+    text-align: left;
     background-color: white;
     border: none;
     box-shadow: none;
     float: left;
     width: 50%;
 }
-
 
 .cv_form{
     text-align: left;
@@ -128,3 +127,7 @@ div.col-1-of-2 {
     text-align: center;
 }
 
+hr {
+    width: 50%;
+    margin: auto;
+}
