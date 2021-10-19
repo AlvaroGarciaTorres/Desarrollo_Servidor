@@ -21,8 +21,7 @@ subir ficheros .gif y .jpg-->
     } else uploadFile();
     
     ?>
-    <br><br>
-    <button class='bottom-btn'><a href='..'>Atrás</a></button> 
+
     
 </body>
 </html>
