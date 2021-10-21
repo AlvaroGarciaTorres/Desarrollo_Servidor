@@ -7,13 +7,18 @@ Reemplazar nos pide otra palabra para reemplazar por la buscada -->
 
 <?php
 
-include("php/functions.php");
+include("php/general_functions.php");
+include("php/specific_functions.php");
 
-if(!isset($_POST['save'])){
-    selectOption();
-} else {
+if(!isset($_POST['text_to_search'])){
+    printSelectTool();
+} else if (empty($_POST['text_to_search'])){
+    printError("Introduzca un texto por favor");
+} else if(isset($_POST['replace'])){
     replace($_POST['word_to_search'], $_POST['replace_string'], $_POST['text_to_search']);
-}
+} else if(isset($_POST['search'])){
+    search();
+} else printForm($_POST['text_tool']);
    
 
 ?>
