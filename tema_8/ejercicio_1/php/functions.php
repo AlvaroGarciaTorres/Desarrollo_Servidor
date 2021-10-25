@@ -34,8 +34,11 @@ function authenthicate(){
     include("php/variables.php");
 
     if($_POST['user_password'] == $user_passwords_array[$_POST['user_id']]){
-        echo "si";
-    } else header("Refresh: 10; url=$_SERVER[PHP_SELF]");
+        header("Refresh: 1; url=php/verDatos.php");
+    } else {
+        header("Refresh: 4; url=php/error.php");
+        echo "El usuario $_POST[user_id] no ha podido registrarse, serás redireccionado en 4 segundos. Si no, pulsa <a href='php/error.php'>aquí</a>.";
+    }
 }
 
 ?>
