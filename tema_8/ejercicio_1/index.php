@@ -10,7 +10,7 @@ que el usuario XXX no ha podido registrarse y de nuevo le envía al formulario--
 
 include("php/functions.php");
 
-if(!isset($_POST['check'])){
+if(empty($_POST['user_id'])){
     printForm();
 } else authenthicate();
 

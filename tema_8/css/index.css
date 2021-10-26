@@ -19,7 +19,8 @@ h1{
     background-color: #3c7c9e;
     padding: 1em;
     border-left: #162e3b solid 5px;
-    box-shadow: 0 2px 2px 1px rgba(11, 31, 32, 0.781);
+    box-shadow: 0 2px 2px 1px rgba(32, 11, 16, 0.781);
+    border-radius: 0.5rem;
 }
 
 div{
@@ -33,6 +34,7 @@ div{
     color: black;
     border-left: darkgray solid 5px;
     box-shadow: 0 2px 2px 1px rgba(48, 51, 51, 0.781);
+    border-radius: 0.5rem;
 }
 
 a, a:active {
@@ -130,4 +132,27 @@ div.col-1-of-2 {
 hr {
     width: 50%;
     margin: auto;
+}
+
+.edited:invalid{
+    outline: 1px lightcoral dotted;
+}
+
+.edited:valid{
+    outline: 1px rgb(240, 128, 128) dotted;
+}
+
+.button-text{
+    background-color: lightcoral;
+    color: white;
+    border-radius: 1rem;
+    padding: 0.5rem 2rem;
+    margin: 0 auto;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.button-text:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 2px 2px 1px rgba(159, 168, 168, 0.781);
 }
