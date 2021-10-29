@@ -30,10 +30,14 @@ function printForm(){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Ejercicio 2</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
+    <h1 class='heading-primary'>
+        Juego de cartas
+    </h1>
     <body>
         <div class="div-form">
+            <span>Elija una de las siguientes opciones: </span><br><br>
             <form action="" method="post">
 END;
     if(isset($_POST['select'])){
@@ -44,9 +48,9 @@ END;
     }
 
     echo<<<END
-                <input type="submit" name="shuffle" value="Barajar">
-                <input type="submit" name="view" value="Ver baraja">
-                <input type="submit" name="select" value="Seleccionar cartas">
+                <input class='form-button' type="submit" name="shuffle" value="Barajar">
+                <input class='form-button' type="submit" name="view" value="Ver baraja">
+                <input class='form-button' type="submit" name="select" value="Seleccionar cartas">
             </form>
         </div>    
     </body>
@@ -54,20 +58,44 @@ END;
 END;
 }
 
-function viewDeck(){
-    for($j = 0; $j<4; $j++){
+function viewDeck($baraja){
+    echo<<<END
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 2</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <h1 class='heading-primary'>
+        Ver barajas
+    </h1>
+    <body>
+END;
+    echo "<div class='card-img'>";
+    foreach($baraja as $palo){
         for($i = 0; $i<12; $i++){
-            $baraja[$j][$i] = $i+1 . $palos[$j];
+           // echo "$palo[$i]<br>";
+            echo "<img src='img/$palo[$i].jpg'>";
         }
     }
+    echo<<<END
+        </div>    
+    </body>
+    </html>
+END;
 }
 
-if(!isset($_POST['shuffle']) or !isset($_POST['view']) or !isset($_POST['select'])){
+
+if(!isset($_POST['shuffle']) and !isset($_POST['view']) and !isset($_POST['select'])){
     printForm();
+    var_dump($_POST);
 } else if (isset($_POST['shuffle'])){
     shuffle();
 } else if(isset($_POST['view'])){
-    viewDeck();
+    viewDeck($baraja);
 } else if (isset($_POST['select']) and !isset($_POST['cardsToView'])){
     printForm();
 } else if (isset($_POST['select']) and isset($_POST['cardsToView'])){
