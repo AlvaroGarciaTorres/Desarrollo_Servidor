@@ -4,30 +4,11 @@ principal-->
 
 <?php
 
-function createRandomArray($arraySize, $minValue, $maxValue){
-    $randomArray = [];
-    for($i = 0; $i<$arraySize; $i++){
-        $number = rand($minValue, $maxValue);
-        while(in_array($number, $randomArray)){
-            $number = rand($minValue, $maxValue);
-        }
-        $randomArray[$i] = $number;
-    }
-    return $randomArray;   
-}
+include("php/functions.php");
 
-function printForm(){
-    
-}
-
-function printArray($array, $cols, $rows){
-    //imprimir el array dando el formato 20x20
-}
-
-if(isset()){
+if(isset($_POST['save'])){
     $new_array = createRandomArray(400, 0, 400);
     printArray($new_array, 20, 20);
-}
-
+} else printForm();
 
 ?>
