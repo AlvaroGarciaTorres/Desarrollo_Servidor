@@ -1,0 +1,32 @@
+.board{
+    border: black solid 1px;
+    border-collapse: collapse;
+    margin: 0 auto;
+    min-width: 30%;
+    width: fit-content;
+}
+.board td{
+    border: black solid 1px;
+    padding: 1rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+.heading-primary{
+    background-color: brown;
+    color: white;
+    padding: 2rem;
+    margin: 0 auto;
+    min-width: 30%;
+    width: fit-content;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.black{
+    background-color: black;
+}
+
+.white{
+    background-color: white;
+}
