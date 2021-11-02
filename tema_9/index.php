@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tema 8</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Tema 9</title>
+    <link rel="stylesheet" type="text/css" href="../tema_8/css/index.css">
 </head>
 
 <body>

@@ -10,7 +10,7 @@ teclear cuantas cartas queremos ver-->
 include("php/functions.php");
 include("php/variables.php");
 
-if(!isset($_POST['shuffle']) and !isset($_POST['view']) and !isset($_POST['select'])){
+if(!isset($_POST['view']) and !isset($_POST['select'])){
     printForm();
 } else if (isset($_POST['shuffle'])){
     shuffle();
