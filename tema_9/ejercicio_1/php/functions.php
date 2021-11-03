@@ -34,8 +34,8 @@ function printForm(){
                     <input type="number" name="number_cols" id="number_cols" placeholder="20"><br><br>
                     <label for="number_rows">Introduzca el número de filas: </label>
                     <input type="number" name="number_rows" id="number_rows" placeholder="20"><br><br>
-                </div>
-                <input type="submit" name="save">
+                    <input type="submit" name="save">
+                </div>               
             </form>
         </section>
         

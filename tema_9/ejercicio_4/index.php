@@ -6,20 +6,11 @@ inventar el alumno-->
 
 <?php
 
-$grades = ["DAW", "DAM", "ASIR"];
-$horas = ["08:30", "9:25", "10:20", "11:40", "12:35", "13:30"];
-
-function createArray($subject){
-    $grade = file("txt/$subject.txt");
-    for($i = 0; $i<count($grade); $i++){
-        $grade[$i] = explode(" ", $grade[$i]);
-    }
-    return $grade;
-    
-}
+include("php/functions.php");
+include("php/variables.php");
 
 function printPage(){
-    global $grades;
+    include("php/variables.php");
     echo<<<END
     <!DOCTYPE html>
     <html lang="en">
@@ -35,41 +26,24 @@ function printPage(){
             Horarios ciclos IES ZAYAS
         </h1>
         <div class="gradesTimetables">
-            <table class="timetable">
+            
 END;
 
-foreach($grades as $grade){
+/*foreach($grades as $grade){
+    echo "<h2 class='heading-secondary'>$grade</h2>";
     printTimetables(createArray($grade));
     echo "<br><br>";
-}
+}*/
 
-echo<<<END
-</table>
-</div>   
-</body>
-</html>
+    array_walk($grades, "printTimetables");
+
+    echo<<<END
+            </table>
+        </div> 
+    <button class='bottom-btn'><a href='..'>Atrás</a></button>  
+    </body>
+    </html>
 END;
-}
-
-function printTimetables($grade){
-    global $horas;
-    echo "<table class='timetable'>";
-    echo "<tr>";
-    echo "<th>Hora</th>";
-    for($i = 0; $i<count($grade); $i++){
-        echo "<th>".$grade[$i][0]."</th>";
-    }
-    echo "</tr>";
-    
-    for($j = 0; $j<count($horas); $j++){
-        echo "<tr>";
-        echo "<td>".$horas[$j]."</td>";
-        for($i = 0; $i<count($grade); $i++){           
-            echo "<td>".$grade[$i][$j + 1]."</td>";
-        }
-        echo "</tr>";
-    }  
-    echo "</table>";
 }
 
 printPage();

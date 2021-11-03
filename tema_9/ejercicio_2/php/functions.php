@@ -37,10 +37,19 @@ END;
         if(isset($_POST['cardsToView'])){
             echo "<input type='number' id='cardsToView' name='cardsToView' value='$_POST[cardsToView]'><br><br>"; 
         } else echo "<input type='number' id='cardsToView' name='cardsToView' placeholder='0'><br><br>";
-        echo "<label for='palo'>Seleccione el palo (opcional): </label>";
-        if(isset($_POST['palo'])){
+        echo "<span>Seleccione el palo (opcional): </span><br><br>";
+        /*if(isset($_POST['palo'])){
             echo "<input type='text' id='palo' name='palo' value='$_POST[palo]'><br><br>"; 
         } else echo "<input type='text' id='palo' name='palo' placeholder='oros'><br><br>";     
+        echo "</div>";*/
+        echo "<label for='palo'>Oros: </label>";
+        echo "<input type='checkbox' id='oros' name='palo[]' value='oros'><br><br>";
+        echo "<label for='palo'>Espadas: </label>";
+        echo "<input type='checkbox' id='espadas' name='palo[]' value='espadas'><br><br>";
+        echo "<label for='palo'>Bastos: </label>";
+        echo "<input type='checkbox' id='bastos' name='palo[]' value='bastos'><br><br>";
+        echo "<label for='palo'>Copas: </label>";
+        echo "<input type='checkbox' id='copas' name='palo[]' value='copas'><br><br>";
         echo "</div>";
     }
 
@@ -67,14 +76,19 @@ END;
                 $usedCards[$i] = "$number$palo";
             } 
         } else {
-            $palo = $_POST['palo'];
-            for($i = 0; $i < $_POST['cardsToView']; $i++){
-                $number = rand(1, 12);
-                while(in_array($palo, $usedCards)){
+            if($_POST['cardsToView'] > (count($_POST['palo']) * 12)){
+                echo "<br><span class='error'>El número máximo de cartas de un palo es 12</span>";
+            }else{
+                for($i = 0; $i < $_POST['cardsToView']; $i++){
+                    $palo = $_POST['palo'][rand(0, count($_POST['palo']) - 1)];//
                     $number = rand(1, 12);
+                    while(in_array("$number$palo", $usedCards)){
+                        $palo = $_POST['palo'][rand(0, count($_POST['palo']) - 1)];//
+                        $number = rand(1, 12);
+                    }
+                    echo "<img src='img/$number$palo.jpg'>";
+                    $usedCards[$i] = "$number$palo";
                 }
-                echo "<img src='img/$number$palo.jpg'>";
-                $usedCards[$i] = "$number$palo";
             } 
         }
     } else if(isset($_POST['cardsToView']) and ($_POST['cardsToView'] > 48 or $_POST['cardsToView'] <= 0)){

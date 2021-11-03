@@ -23,10 +23,27 @@
     text-align: center;
 }
 
+td{
+    text-align: center;
+}
+
 .black{
     background-color: black;
+    color: white;
 }
 
 .white{
     background-color: white;
+    color: black;
+}
+
+.bottom-btn{
+    margin-left:60%;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
+.bottom-btn:visited{
+    text-decoration: none;
 }
