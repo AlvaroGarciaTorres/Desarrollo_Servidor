@@ -26,16 +26,7 @@ function calendario_anual(){
 END;
     echo "<table class='allMonths'>";
     echo "<tr>";
-    /*$rowSplit = 0;
-    for($i = 1; $i <= 12; $i++){       
-        if($rowSplit % 4 == 0){
-            echo "</tr><tr>";
-        }*/
-        //echo "<td class='month-cell'>";
-        array_walk($months, 'calendario_mensual', $_POST['userYear']);
-        //echo "</td>";
-        /*$rowSplit++;
-    }*/
+    array_walk($months, 'calendario_mensual', $_POST['userYear']);
     echo "</tr>";  
     echo "</table><br><br>"; 
     echo "<button class='bottom-btn'><a href='.'>Volver</a></button>";

@@ -11,8 +11,7 @@ function getMonthDays($month, $year){
 
 function calendario_mensual($month, $year){
     global $week;
-    global $monthsName;
-    echo "<tr></tr>";
+    global $monthsName;     
     echo "<td class='month-cell'>";
     echo "<h1 class='heading-primary'>" . $monthsName[$month - 1] . "</h1>";
     echo "<table class='calendar'>";
@@ -37,6 +36,9 @@ function calendario_mensual($month, $year){
     echo "</tr>";
     echo "</table>";
     echo "</td>";
+    if($month % 4 === 0){
+        echo "</tr><tr>";
+    }
 }
 
 ?>
