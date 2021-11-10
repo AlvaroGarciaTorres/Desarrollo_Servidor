@@ -1,6 +1,6 @@
 <?php
 
-//header("Content-Type: image/png");
+header("Content-Type: image/png");
 
 $img = imagecreatetruecolor(200, 200);
 

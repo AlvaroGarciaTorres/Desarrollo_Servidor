@@ -26,6 +26,7 @@ imageline($img, 190, 220, 190, 260, $white);
 $points = [350, 200, 250, 120, 150, 200];
 imagefilledpolygon($img, $points, count($points)/2, $red);
 imagepolygon($img, $points, count($points)/2, $black);
+//ventana circular
 
 
 
