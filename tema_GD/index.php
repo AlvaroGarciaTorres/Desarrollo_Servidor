@@ -14,7 +14,7 @@
     <div class="form_div">
         <?php
 
-        define('EXERCISES', 4);
+        define('EXERCISES', 6);
 
         for($i=1; $i<=EXERCISES; $i++){
             echo "<button class='btn'><a href='./ejercicio_$i/'>Ejercicio $i</a></button><br><br>";
