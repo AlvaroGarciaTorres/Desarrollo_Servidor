@@ -62,7 +62,7 @@ END;
     }
 }
 
-if(!isset($_COOKIE['language'])){
+if(!isset($_COOKIE['preferences'])){
     cookiesForm();
 } else printForm();
 
