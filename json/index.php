@@ -1,13 +1,39 @@
 <?php
 
-var_dump(file_get_contents("package.json"));
+$json1 = file_get_contents("colores1.json");
 
-$json = file_get_contents("package.json");
+$array_json1 = json_decode($json1, true);
 
-var_dump(json_decode($json, true));
+foreach($array_json1 as $color_array){
+    foreach($color_array as $color){
+        foreach($color as $key => $value){
+            echo "$key : $value<br>";
+        }
+        echo "<br>";
+    }
+    echo "<br>";
+}
 
-$myarray = json_decode($json, true);
+$json2 = file_get_contents("colores2.json");
 
-echo $myarray['scripts']['watch'];
+$array_json2 = json_decode($json2, true);
+
+foreach($array_json2 as $color_array){
+    foreach($color_array as $color){
+        foreach($color as $key => $value){
+            echo "$key : $value<br>";
+        }
+        echo "<br>";
+    }
+    echo "<br>";
+}
+
+$json3 = file_get_contents("colores3.json");
+
+$json3_array = json_decode($json3, true);
+
+foreach($json3_array as $key => $value){   
+    echo "$key : $value<br>";    
+}
 
 ?>
